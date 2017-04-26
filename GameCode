@@ -1,0 +1,85 @@
+import java.util.Scanner;
+
+public class TicTacToeGame {
+	public static void main(String[]args) {
+		//Setting up Board
+		Scanner scan = new Scanner(System.in);
+		TicTacToeBoard board = new TicTacToeBoard(630, 690);
+		int[][] boardLines = {
+			{10, 200, 600, 200},
+			{10, 400, 600, 400},
+			{200, 10, 200, 600},
+			{400, 10, 400, 600}};
+		board.defineBoard(boardLines);
+		int[][] theBoard = new int[3][3];
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				theBoard[i][j] = 0;
+			}
+		}
+		board.setBoard(theBoard);
+		board.setFiles("number-1-icon.jpg", "number-2-icon.jpg");
+		board.repaint();
+
+		//One Player Game
+		boolean gameOn = true;
+		int turn = 2;
+		while(gameOn == true) {
+			if(turn == 1)
+				turn = 2;
+			else
+				turn = 1;
+			theBoard = game(turn, theBoard);
+			board.setBoard(theBoard);
+			board.repaint();
+			if(checkGame(turn, theBoard) == true) {
+				String s = "Player " + turn + " won! Good game.";
+				board.setWinner(s, 200, 630, 20);
+				board.showText(true);
+				board.repaint();
+				gameOn = false;
+			}
+		}
+	}
+
+	public static int[][] game(int turn, int[][] arr) {
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Choose a row: ");
+		int row = scan.nextInt();
+		System.out.print("Choose a column: ");
+		int column = scan.nextInt();
+		if(arr[row - 1][column - 1] == 0)
+			arr[row - 1][column - 1] = turn;
+		else {
+			System.out.println("This spot is taken. Try again.");
+			if(turn == 1)
+				turn = 2;
+			else
+				turn = 1;
+		}
+		return arr;
+	}
+
+	public static boolean checkGame(int turn, int[][] arr) {
+		boolean bleh = false;
+		for(int i = 0; i < 2; i++) {
+			if(arr[i][0]==arr[i][2] && arr[i][0]==arr[i][1] && arr[i][0]==turn) {
+				bleh = true;
+				break;
+			}
+		}
+		for(int i = 0; i < 2; i++) {
+			if(arr[0][i]==arr[2][i] && arr[0][i]==arr[1][i] && arr[i][0]==turn) {
+				bleh = true;
+				break;
+			}
+		}
+		if(arr[0][0]==arr[2][2] && arr[0][0]==arr[1][1] && arr[0][0]==turn)
+			bleh = true;
+		else if(arr[0][2]==arr[2][0] && arr[0][2]==arr[1][1] && arr[2][0]==turn)
+			bleh = true;
+		else
+			bleh = false;
+		return bleh;
+	}
+}
