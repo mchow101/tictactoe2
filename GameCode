@@ -107,13 +107,15 @@ public class TicTacToeGame {
 			int row = scan.nextInt();
 			System.out.print("Choose a column: ");
 			int column = scan.nextInt();
-			if(arr[row - 1][column - 1] == 0) {
+			if(row > 3 || column > 3)
+			    System.out.println("Not a spot. Try again.")
+			else if(arr[row - 1][column - 1] == 0) {
 				arr[row - 1][column - 1] = turn;
 				bleh = false;
 			}
 			else
 				System.out.println("This spot is taken. Try again.");
-			}
+		}
 		return arr;
 	}
 
@@ -122,11 +124,11 @@ public class TicTacToeGame {
 		for(int i = 0; i < 3; i++) {
 			if(arr[i][0]==arr[i][2] && arr[i][0]==arr[i][1] && arr[i][0]==turn) {
 				bleh = true;
-				//break;
+				break;
 			}
 			if(arr[0][i]==arr[2][i] && arr[0][i]==arr[1][i] && arr[0][i]==turn) {
 				bleh = true;
-				//break;
+				break;
 			}
 		}
 		if(arr[0][0]==arr[2][2] && arr[0][0]==arr[1][1] && arr[0][0]==turn)
