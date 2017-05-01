@@ -108,7 +108,7 @@ public class TicTacToeGame {
 			System.out.print("Choose a column: ");
 			int column = scan.nextInt();
 			if(row > 3 || column > 3)
-			    System.out.println("Not a spot. Try again.")
+			    System.out.println("Not a spot. Try again.");
 			else if(arr[row - 1][column - 1] == 0) {
 				arr[row - 1][column - 1] = turn;
 				bleh = false;
