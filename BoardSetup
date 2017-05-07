@@ -1,19 +1,17 @@
-//code does not belong to me
-
 import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
-public class TicTacToeBoard{
+public class Board{
 	DrawTicTacToeBoard DrawTicTacToeBoard;
 	JFrame frame;
 	boolean showText=false;
 	String racerPlaces="";
 	int textX,textY,textSize;
 	int[][] board;
-	char[][] pieces;
+	int[][] pieces;
 
 
 
@@ -27,7 +25,7 @@ public class TicTacToeBoard{
 		board=b;
 	}
 
-	public void setBoard(char[][]b){
+	public void setBoard(int[][]b){
 		pieces=b;
 	}
 
@@ -76,10 +74,10 @@ public class TicTacToeBoard{
 
 		 	for (int i=0;i<3;i++){
 				for (int j=0;j<3;j++){
-					if (pieces[i][j]=='x'){
+					if (pieces[i][j]=='1'){
 						g.drawImage(image1,j*200+25,i*200+25,null,null);
 					}
-					if (pieces[i][j]=='o'){
+					if (pieces[i][j]=='2'){
 						g.drawImage(image2,j*200+25,i*200+25,null,null);
 					}
 				}
